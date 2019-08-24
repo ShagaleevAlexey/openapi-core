@@ -24,6 +24,8 @@ class SchemaRegistry(SchemaFactory):
 
         if '$ref' in schema_spec:
             schema = Proxy(lambda: self.create(schema_deref))
+            schema.is_ref = True
+            schema.name = schema_spec.get('$ref').split('/')[-1]
         else:
             schema = self.create(schema_deref)
 

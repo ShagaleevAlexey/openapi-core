@@ -72,7 +72,7 @@ class Schema(object):
     }
 
     def __init__(
-            self, schema_type=None, model=None, properties=None, items=None,
+            self, schema_type=None, model=None, is_ref=False, name=None, properties=None, items=None,
             schema_format=None, required=None, default=None, nullable=False,
             enum=None, deprecated=False, all_of=None, one_of=None,
             additional_properties=True, min_items=None, max_items=None,
@@ -82,6 +82,8 @@ class Schema(object):
             min_properties=None, max_properties=None):
         self.type = SchemaType(schema_type)
         self.model = model
+        self.is_ref = is_ref
+        self.name = name
         self.properties = properties and dict(properties) or {}
         self.items = items
         self.format = schema_format
